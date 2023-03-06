@@ -53,9 +53,9 @@ public class BankOfLithuaniaSoapClient : IBankOfLithuaniaSoapClient
     public async Task<List<ExchangeRateDto>?> GetExchangeRatesByDate(DateTime date)
     {
         var dateString = date.ToShortDateString();
-        ClientSettings.RequestUrl = $"{ClientSettings.RequestUrl}getExchangeRatesByDate?Date={dateString}"; 
+        var requestUrl = $"{ClientSettings.RequestUrl}getExchangeRatesByDate?Date={dateString}"; 
         
-        _relativeUri = new Uri(ClientSettings.RequestUrl, UriKind.Relative);
+        _relativeUri = new Uri(requestUrl, UriKind.Relative);
         var requestUri = new Uri(_httpClient.BaseAddress!, _relativeUri);
         
         var responseMessage = await MakeRestRequest(requestUri);
