@@ -7,5 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Exchange Rate Previewer';
-  message = "Returns a list containing exchange rates, as expressed in Litas per 1 currency unit, for the specified date.";
 }

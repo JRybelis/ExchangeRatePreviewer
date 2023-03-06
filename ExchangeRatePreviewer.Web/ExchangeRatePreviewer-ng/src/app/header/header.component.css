@@ -1,0 +1,18 @@
+.header{
+  height: 200;
+  padding: 10px 10px;
+  display: inline-block;
+  vertical-align: middle;
+  background-color: #565656;
+}
+.date-picker{
+  display:inline-flex;
+  vertical-align: middle;
+}
+.description-message{
+  overflow: hidden;
+  text-align: center;
+  vertical-align: middle;
+  inline-size: 200px;
+  color: #c5c5c5;
+}
