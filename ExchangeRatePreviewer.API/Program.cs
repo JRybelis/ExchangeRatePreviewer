@@ -1,4 +1,5 @@
 using ExchangeRatePreviewer.Core.Interfaces.Services;
+using ExchangeRatePreviewer.Core.Interfaces.Services.SOAP;
 using ExchangeRatePreviewer.Core.Interfaces.Services.Validators;
 using ExchangeRatePreviewer.Core.Services;
 using ExchangeRatePreviewer.Core.Validation;
@@ -40,6 +41,7 @@ builder.Services.AddSingleton<IBankOfLithuaniaSoapClientSettings>((_) => builder
     .Get<BankOfLithuaniaSoapClientSettings>());
 builder.Services.AddScoped<IBankOfLithuaniaSoapClient, BankOfLithuaniaSoapClient>();
 builder.Services.AddScoped<IExchangeRateService, ExchangeRateService>();
+builder.Services.AddScoped<IResultParser, ResultParser>();
 
 builder.Services.AddResponseCaching(options =>
 {

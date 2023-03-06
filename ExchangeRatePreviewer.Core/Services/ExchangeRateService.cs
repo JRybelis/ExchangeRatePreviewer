@@ -1,8 +1,7 @@
-﻿using ExchangeRatePreviewer.Core.Interfaces;
-using ExchangeRatePreviewer.Core.Interfaces.Services;
+﻿using ExchangeRatePreviewer.Core.Interfaces.Services;
+using ExchangeRatePreviewer.Core.Interfaces.Services.SOAP;
 using ExchangeRatePreviewer.Core.Interfaces.Services.Validators;
 using ExchangeRatePreviewer.Core.Models.Dtos.ExchangeRate;
-using ExchangeRatePreviewer.Core.Services.SOAP;
 
 namespace ExchangeRatePreviewer.Core.Services;
 
@@ -17,13 +16,10 @@ public class ExchangeRateService : IExchangeRateService
         _client = client;
     }
 
-    public async Task<List<ExchangeRateDto>?> GetAllExchangeRatesByDate(DateTime date/*,
-        BankOfLithuaniaSoapClientSettings clientSettings*/)
+    public async Task<List<ExchangeRateDto>?> GetAllExchangeRatesByDate(DateTime date)
     {
         _dateValidation.IsDateValid(date);
-        
-        //var client = new BankOfLithuaniaSoapClient(clientSettings); 
-        
+
         var selectedDateExchangeRates = await _client.GetExchangeRatesByDate(date);
         if (selectedDateExchangeRates is null)
             return null;
@@ -32,9 +28,8 @@ public class ExchangeRateService : IExchangeRateService
         if (previousDayExchangeRates is null)
             return null;
 
-        var exchangeRatesWithRateChange = GetExchangeRatesChangeOverPreviousDay(
-            selectedDateExchangeRates.ExchangeRateDtos,
-            previousDayExchangeRates.ExchangeRateDtos);
+        var exchangeRatesWithRateChange =
+            GetExchangeRatesChangeOverPreviousDay(selectedDateExchangeRates, previousDayExchangeRates);
         var sortedExchangeRatesList = exchangeRatesWithRateChange.OrderByDescending(xrd => xrd.RateChangeVsPreviousDay).ToList();
 
         return sortedExchangeRatesList;

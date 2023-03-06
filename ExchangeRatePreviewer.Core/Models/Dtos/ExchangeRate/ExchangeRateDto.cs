@@ -2,7 +2,6 @@
 
 public class ExchangeRateDto
 {
-    public Guid Id { get; set; }
     public string Currency { get; set; } = default!;
     public DateTime Date { get; set; }
     public int Quantity { get; set; }
