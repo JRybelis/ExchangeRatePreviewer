@@ -18,7 +18,7 @@ public class ExchangeRateController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<ExchangeRateDto>>> GetAll(DateTime date)
+    public async Task<ActionResult<List<ExchangeRateDto>>> GetByDate(DateTime date)
     {
         var result = await _exchangeRateService.GetAllExchangeRatesByDate(date);
         
