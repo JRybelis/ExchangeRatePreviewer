@@ -1,8 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { HttpHeaders } from "@angular/common/http";
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { HandleError, HttpErrorHandler } from "./http-error-handler.service";
 import { ExchangeRate } from "../exchange-rates/exchange-rate";
 

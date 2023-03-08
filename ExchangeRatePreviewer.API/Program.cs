@@ -25,11 +25,6 @@ builder.Services.AddCors(options =>
 
 builder.Services.Configure<BankOfLithuaniaSoapClientSettings>(
     builder.Configuration.GetSection("BankOfLithuaniaSoapClientSettings"));
-/*var baseUrl = builder.Configuration.GetValue<string>("BankOfLithuaniaSoapClientSettings:BaseUrl");
-var requestUrl = builder.Configuration.GetValue<string>("BankOfLithuaniaSoapClientSettings:RequestUrl");
-var timeoutMs = builder.Configuration.GetValue<int>("BankOfLithuaniaSoapClientSettings:TimeoutMs");
-var resultXmlNameSpace = builder.Configuration.GetValue<string>("BankOfLithuaniaSoapClientSettings:ResultXmlNamespace");*/
-
 
 builder.Host.UseSerilog((ctx, lc) =>
     lc.WriteTo.Console()

@@ -1,5 +1,4 @@
-﻿using ExchangeRatePreviewer.Core.Interfaces.Services;
-using ExchangeRatePreviewer.Core.Interfaces.Services.SOAP;
+﻿using ExchangeRatePreviewer.Core.Interfaces.Services.SOAP;
 
 namespace ExchangeRatePreviewer.Core.Services.SOAP;
 

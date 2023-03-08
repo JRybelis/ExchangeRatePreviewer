@@ -14,7 +14,6 @@ export class ExchangeRatesComponent implements OnInit{
   constructor(private exchangeRateService: ExchangeRateService){ }
 
   ngOnInit(): void {
-    // this.getExchangeRatesByDate('2014-12-04');
   }
 
 
@@ -22,7 +21,6 @@ export class ExchangeRatesComponent implements OnInit{
     this.exchangeRateService.getExchangeRatesByDate(exchangeRateDate)
       .subscribe((exchangeRates: ExchangeRate[]) => {
         this.exchangeRates = exchangeRates;
-        console.info(this.exchangeRates);
       });
   }
 }
