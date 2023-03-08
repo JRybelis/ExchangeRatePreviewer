@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-import { ExchangeRatesComponent } from '../exchange-rates/exchange-rates.component';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  providers: [ExchangeRatesComponent],
+  providers: [],
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent  implements OnInit {
@@ -13,7 +12,9 @@ export class HeaderComponent  implements OnInit {
   minDate: Date;
   maxDate: Date;
 
-  constructor (private exchangeRatesComponent: ExchangeRatesComponent) {
+  @Output() onDateChange = new EventEmitter();
+
+  constructor () {
     this.minDate = new Date("2000-01-01")
     this.maxDate = new Date("2014-12-31");
   };
@@ -25,6 +26,12 @@ export class HeaderComponent  implements OnInit {
   imageSource: string = '/assets/currencies.jpg';
 
   passDate(eventData: MatDatepickerInputEvent<Date>): void {
+    let dateValue = this.formShortDateString(eventData);
+
+    this.onDateChange.emit(dateValue);
+  };
+
+  formShortDateString(eventData: MatDatepickerInputEvent<Date>): string {
     const year: string = '' + eventData?.value?.getFullYear();
 
     let month: string = '';
@@ -40,9 +47,6 @@ export class HeaderComponent  implements OnInit {
       day = '0' + day;
     }
 
-    let dateValue: string = year + '-' + month + '-' + day;
-    console.log(year + '-' + month + '-' + day);
-
-    this.exchangeRatesComponent.getExchangeRatesByDate(dateValue);
-  };
+    return year + '-' + month + '-' + day;
+  }
 }

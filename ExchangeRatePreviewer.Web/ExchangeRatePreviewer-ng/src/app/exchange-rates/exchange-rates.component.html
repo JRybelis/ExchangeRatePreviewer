@@ -1,18 +1,21 @@
-<h2>Exchange rates</h2>
-<ul class="exchangeRates">
-  <li *ngFor="let exchangeRate of exchangeRates">
-    <div>{{exchangeRate?.date}}</div>
-    <div>{{exchangeRate?.currency}}</div>
-    <div>{{exchangeRate?.quantity}}</div>
-    <div>{{exchangeRate?.unitDescription}}</div>
-    <div>{{exchangeRate?.rate}}</div>
-    <div>{{exchangeRate?.rateChangeVsPreviousDay}}</div>
+<div class="header">
+  <app-header (onDateChange)="getExchangeRatesByDate($event)"></app-header>
+  <h1>Exchange rates for {{exchangeRates[0]?.date?.substring(0, 10)}} </h1>
+</div>
 
-    <!-- <span class="badge">{{exchangeRate?.date}}</span>
-    <span class="badge">{{exchangeRate?.currency}}</span>
-    <span class="badge">{{exchangeRate?.quantity}}</span>
-    <span class="badge">{{exchangeRate?.unitDescription}}</span>
-    <span class="badge">{{exchangeRate?.rate}}</span>
-    <span class="badge">{{exchangeRate?.rateChangeVsPreviousDay}}</span> -->
-  </li>
-</ul>
+
+<div class="exchangeRates">
+  <mat-card *ngFor="let exchangeRate of exchangeRates" class="exchange-rate-card">
+    <mat-card-header>
+      <mat-card-title>{{exchangeRate.currency}}: {{exchangeRate.rate}}</mat-card-title>
+      <mat-card-subtitle [ngClass]="{rateChangePositive: (exchangeRate.rateChangeVsPreviousDay > 0),
+        rateChangeNegative: (exchangeRate.rateChangeVsPreviousDay < 0)}">
+        {{exchangeRate.rateChangeVsPreviousDay}} vs. previous day rate</mat-card-subtitle>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <span>{{ exchangeRate?.unitDescription }}</span>
+      <mat-divider></mat-divider>
+    </mat-card-content>
+  </mat-card>
+</div>

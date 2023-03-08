@@ -6,6 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -36,6 +38,8 @@ import { MessageService } from './services/message.service';
     MatInputModule,
     MatNativeDateModule,
     MatIconModule,
+    MatCardModule,
+    MatDividerModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule

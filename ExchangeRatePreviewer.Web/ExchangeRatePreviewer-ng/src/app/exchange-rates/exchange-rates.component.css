@@ -1,75 +1,39 @@
-.exchangeRates {
-  list-style-type: none;
+.header {
   padding: 0;
-}
-
-.exchangeRates li {
-  display: grid;
-  grid-template-columns: min-content max-content 1fr max-content max-content;
-  grid-template-areas:
-  "badge date"
-  "badge currency"
-  "badge quantity"
-  "badge unitDescription"
-  "badge rate"
-  "badge rateChangeVsPreviousDay";
-  margin: 1rem 0;
-  align-items: center;
-  background-color: #bfd8c1;
-  border-radius: 4px;
-}
-
-.exchangeRates li .badge {
-  grid-area: badge;
-}
-
-.exchangeRates li .date {
-  grid-area: date;
-}
-
-.exchangeRates li .currency {
-  grid-area: currency;
-}
-.exchangeRates li .quantity {
-  grid-area: quantity;
-}
-.exchangeRates li .unitDescription {
-  grid-area: unitDescription;
-}
-
-.exchangeRates li .rate {
-  grid-area: rate;
-}
-
-.exchangeRates li .rateChangeVsPreviousDay {
-  grid-area: rateChangeVsPreviousDay;
-}
-
-.exchangeRates .badge{
-  padding: 0.5rem 0.6rem;
-  color: white;
-  background-color: #435B60;
-  margin-right: 0.8rem;
-  border-radius: 4px 0 0 4px;
-  align-self: stretch;
+  margin: 0;
   display: flex;
+  flex-direction: row;
   align-items: center;
 }
+.header h1 {
+  margin-right: 35%;
+  padding: 10px;
+}
+app-header {
+  display: flex;
+  margin-right: auto;
+}
 
-@media (max-width: 550px) {
-  .exchangeRates li {
-    grid-template-columns: min-content 1fr 1fr;
-    grid-template-rows: 2rem max-content;
-    grid-template-areas:
-    "badge date"
-    "badge currency"
-    "badge quantity"
-    "badge unitDescription"
-    "badge rate"
-    "badge rateChangeVsPreviousDay";
-  }
+.exchangeRates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
 
-  .exchangeRates li {
-    margin-top: 0.3rem;
-  }
+mat-card-title {
+  text-align: justify;
+  color: azure;
+}
+
+mat-card-content {
+  color: azure;
+}
+
+.rateChangePositive {
+  color: green;
+}
+
+.rateChangeNegative {
+  color: red;
 }

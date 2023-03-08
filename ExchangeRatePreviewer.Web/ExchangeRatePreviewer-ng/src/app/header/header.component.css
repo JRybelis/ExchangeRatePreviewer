@@ -1,6 +1,7 @@
 .header{
   height: 200;
   padding: 10px 10px;
+  margin-bottom: 25px;
   display: inline-block;
   vertical-align: middle;
   background-color: #565656;
