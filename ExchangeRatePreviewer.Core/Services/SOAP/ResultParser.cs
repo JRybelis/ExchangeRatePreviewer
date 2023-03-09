@@ -9,30 +9,35 @@ namespace ExchangeRatePreviewer.Core.Services.SOAP;
 public class ResultParser : IResultParser
 {
     private readonly ILogger<ResultParser> _logger;
+    public ResultParser(ILogger<ResultParser> logger)
+    {
+        _logger = logger;
+    }
+
     public List<ExchangeRateDto> ParseResponseXmlElement(string responseString)
     {
         var response = new List<ExchangeRateDto>();
-                var xmlDocument = new XmlDocument();
-        
-                xmlDocument.LoadXml(responseString);
-                if (xmlDocument.DocumentElement == null) return response;
-                
-                var exchangeRates = xmlDocument.DocumentElement.SelectNodes("/ExchangeRates");
-                var exchangeRatesItems = exchangeRates.Item(0).ChildNodes;
-        
-                try
-                {
-                    // Populate BankOfLithuaniaExchangeRateServiceResponse with parsed values
-                    foreach (XmlElement exchangeRatesItem in exchangeRatesItems)
-                        response.Add(PopulateExchangeRateDto(exchangeRatesItem));
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogDebug("{ExInnerException} caused {ExMessage}", ex.InnerException, ex.Message);
-                    throw;
-                }
-        
-                return response;
+        var xmlDocument = new XmlDocument();
+
+        xmlDocument.LoadXml(responseString);
+        if (xmlDocument.DocumentElement == null) return response;
+
+        var exchangeRates = xmlDocument.DocumentElement.SelectNodes("/ExchangeRates");
+        var exchangeRatesItems = exchangeRates.Item(0).ChildNodes;
+
+        try
+        {
+            // Populate BankOfLithuaniaExchangeRateServiceResponse with parsed values
+            foreach (XmlElement exchangeRatesItem in exchangeRatesItems)
+                response.Add(PopulateExchangeRateDto(exchangeRatesItem));
+        }
+        catch (Exception ex)
+        {
+            _logger.LogDebug("{ExInnerException} caused {ExMessage}", ex.InnerException, ex.Message);
+            throw;
+        }
+
+        return response;
     }
     
     private static ExchangeRateDto PopulateExchangeRateDto(XmlNode exchangeRatesItem)

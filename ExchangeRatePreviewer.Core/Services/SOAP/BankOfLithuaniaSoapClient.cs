@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Globalization;
+using Microsoft.Extensions.Logging;
 using System.Net;
 using System.Net.Http.Headers;
 using ExchangeRatePreviewer.Core.Interfaces.Services.SOAP;
@@ -52,7 +53,7 @@ public class BankOfLithuaniaSoapClient : IBankOfLithuaniaSoapClient
 
     public async Task<List<ExchangeRateDto>?> GetExchangeRatesByDate(DateTime date)
     {
-        var dateString = date.ToShortDateString();
+        var dateString = date.ToString("O", CultureInfo.InvariantCulture).Substring(0, 10);
         var requestUrl = $"{ClientSettings.RequestUrl}getExchangeRatesByDate?Date={dateString}"; 
         
         _relativeUri = new Uri(requestUrl, UriKind.Relative);
